@@ -1,10 +1,11 @@
 # build and deploy to GitHub Pages
 name: Build and Deploy
 
+# On push except main branch
 on:
-  push:
+  push: 
     branches:
-      - main
+      - !main
 
 jobs:
   build:
