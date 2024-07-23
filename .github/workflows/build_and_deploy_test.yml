@@ -1,0 +1,26 @@
+name: buidl and deploy to test
+
+on:
+  pull_request: 
+    branches:
+       - main
+    
+jobs:
+  deployment-test:
+    environment:
+      name: test
+      url: https://cppbuild-test.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      - name: Check if GCC available
+        run: gcc --version
+
+      - name: Build with make
+        run: make
+
+      - name: Clean up
+        run: make clean
