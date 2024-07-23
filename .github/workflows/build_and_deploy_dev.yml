@@ -1,0 +1,29 @@
+# build and deploy to GitHub Pages
+name: Build and Deploy
+
+# On push except main branch
+on:
+  push: 
+    branches:
+      - '*'
+      - '!main'
+
+jobs:
+  deployment-dev:
+    environment:
+      name: dev
+      url: https://cppbuild-dev.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      - name: Check if GCC available
+        run: gcc --version
+
+      - name: Build with make
+        run: make
+
+      - name: Clean up
+        run: make clean

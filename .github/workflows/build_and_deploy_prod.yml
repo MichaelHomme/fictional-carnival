@@ -1,15 +1,15 @@
-# build and deploy to GitHub Pages
-name: Build and Deploy
+name: Build and deploy to production
 
-# On push except main branch
 on:
-  push: 
+  push:
     branches:
-      - '*'
-      - '!main'
+      - main
 
 jobs:
-  build:
+  deployment-prod:
+    environment:
+      name: prod
+      url: https://cppbuild-prod.com
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +24,4 @@ jobs:
 
       - name: Clean up
         run: make clean
+    
