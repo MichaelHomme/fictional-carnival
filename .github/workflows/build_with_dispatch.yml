@@ -15,12 +15,16 @@ on:
 
 jobs:
   deployment:
+    environment: ${{ github.event.inputs.deployment }}
     runs-on: ubuntu-latest
 
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Wihch deployment?
+        run: echo "Deploying to ${{ github.event.inputs.deployment }} environment"
 
       - name: Check if GCC available
         run: gcc --version
