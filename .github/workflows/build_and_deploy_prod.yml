@@ -6,11 +6,31 @@ on:
       - main
 
 jobs:
+  deployment-test:
+    environment:
+      name: test
+      url: https://cppbuild-test.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      - name: Check if GCC available
+        run: gcc --version
+
+      - name: Build with make
+        run: make
+
+      - name: Clean up
+        run: make clean
+
   deployment-prod:
     environment:
       name: prod
       url: https://cppbuild-prod.com
     runs-on: ubuntu-latest
+    needs: deployment-test
 
     steps:
       - name: Checkout code
