@@ -13,16 +13,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
     
       - name: Check if GCC available
         run: gcc --version
 
       - name: Build with make
         run: make build
-    
 
       - name: Clean up
         run: make clean
