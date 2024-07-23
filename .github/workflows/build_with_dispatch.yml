@@ -1,0 +1,32 @@
+name: build with dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment:
+        type: choice
+        description: 'Type of deployment'
+        required: true
+        default: 'dev'
+        options:
+          - dev
+          - test
+          - prod
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check if GCC available
+        run: gcc --version
+
+      - name: Build with make
+        run: make
+
+      - name: Clean up
+        run: make clean
