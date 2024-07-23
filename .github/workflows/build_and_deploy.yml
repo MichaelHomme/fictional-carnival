@@ -18,7 +18,7 @@ jobs:
         run: gcc --version
 
       - name: Build with make
-        run: make build
+        run: make
 
       - name: Clean up
         run: make clean
