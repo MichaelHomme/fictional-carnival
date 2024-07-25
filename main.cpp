@@ -7,5 +7,6 @@ int main() {
     std::string line;
     readline(line);
     writeline(line);
+    std::cout << "Goodbye!" << std::endl;
     return 0;
 }
